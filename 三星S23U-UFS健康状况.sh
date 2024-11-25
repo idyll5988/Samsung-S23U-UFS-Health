@@ -44,6 +44,10 @@ ufs() {
 
     echo "$status_msg"
 }
+
+name=$(su -c "cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/product_name")
+echo "UFS设备品牌 - $name"
+
 if [[ -f /sys/devices/platform/soc/1d84000.ufshc/health_descriptor/life_time_estimation_a ]]; then
     ufs_a=$(su -c "cat /sys/devices/platform/soc/1d84000.ufshc/health_descriptor/life_time_estimation_a" | cut -f1 -d ' ')
     echo "A - $(ufs $ufs_a)"
